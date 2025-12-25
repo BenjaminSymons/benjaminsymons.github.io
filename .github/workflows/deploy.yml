@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/configure-pages@v5
+        id: pages
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -27,7 +30,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          GITHUB_REPO: ${{ github.event.repository.name }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
