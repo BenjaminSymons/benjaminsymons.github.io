@@ -1,5 +1,10 @@
 {
 	"files.associations": {
 		"*.css": "tailwindcss"
-	}
+	},
+	"files.exclude": {
+    "**/.git": false,
+	"**/.github": false
+}
+
 }
