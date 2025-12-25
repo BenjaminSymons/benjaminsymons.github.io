@@ -1,6 +1,9 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+const basePath = process.env.BASE_PATH ?? '';
+const normalizedBasePath = basePath === '/' ? '' : basePath.replace(/\/$/, '');
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
@@ -9,7 +12,7 @@ const config = {
 
 	kit: {
 		paths: {
-			base: process.env.BASE_PATH ?? ''
+			base: normalizedBasePath
 		},
 		adapter: adapter({
 			pages: 'build',
