@@ -12,7 +12,7 @@
 	<header class="border-b border-black/10 px-6 py-5">
 		<h1 class="text-3xl font-semibold md:text-4xl">{title}</h1>
 		{#if subtitle}
-			<p class="mt-2 text-sm text-muted">{subtitle}</p>
+			<p class="text-muted mt-2 text-sm">{subtitle}</p>
 		{/if}
 	</header>
 

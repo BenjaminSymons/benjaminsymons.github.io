@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import ToolLayout from '$lib/components/ToolLayout.svelte';
 	import type { DiffRequest, DiffResponse } from '$lib/tools/diff/diff.worker';
 
@@ -6,26 +7,28 @@
 	let right = $state('');
 	let result = $state<DiffResponse | null>(null);
 
-	// Create worker once, terminate on unmount
-	const worker = new Worker(new URL('$lib/tools/diff/diff.worker.ts', import.meta.url), {
-		type: 'module'
+	let worker: Worker | null = null;
+
+	onMount(() => {
+		worker = new Worker(new URL('$lib/tools/diff/diff.worker.ts', import.meta.url), {
+			type: 'module'
+		});
+
+		worker.onmessage = (ev: MessageEvent<DiffResponse>) => {
+			result = ev.data;
+		};
+
+		return () => worker?.terminate();
 	});
 
-	worker.onmessage = (ev: MessageEvent<DiffResponse>) => {
-		result = ev.data;
-	};
-
 	function run() {
+		if (!worker) return;
 		const msg: DiffRequest = { left, right };
 		worker.postMessage(msg);
 	}
 
 	$effect(() => {
 		run();
-	});
-
-	$effect(() => {
-		return () => worker.terminate();
 	});
 </script>
 
@@ -48,7 +51,7 @@
 			<strong class="text-[rgb(var(--accent-2))]">
 				{result.equal ? 'Match' : 'Different'}
 			</strong>
-			<div class="mt-2 text-muted">{result.summary}</div>
+			<div class="text-muted mt-2">{result.summary}</div>
 		{:else}
 			<div class="text-muted">Type to compare.</div>
 		{/if}

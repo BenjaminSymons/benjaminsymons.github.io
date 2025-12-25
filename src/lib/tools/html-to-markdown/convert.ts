@@ -1,13 +1,4 @@
-const BLOCK_TAGS = new Set([
-	'p',
-	'div',
-	'section',
-	'article',
-	'header',
-	'footer',
-	'aside',
-	'nav'
-]);
+const BLOCK_TAGS = new Set(['p', 'div', 'section', 'article', 'header', 'footer', 'aside', 'nav']);
 
 export function htmlToMarkdown(input: string): string {
 	if (!input.trim()) return '';
@@ -43,7 +34,14 @@ function serializeNode(node: ChildNode, context: Context): string {
 	if (tag === 'code') return renderInlineCode(el);
 	if (tag === 'strong' || tag === 'b') return wrapInline('**', el, context);
 	if (tag === 'em' || tag === 'i') return wrapInline('*', el, context);
-	if (tag === 'h1' || tag === 'h2' || tag === 'h3' || tag === 'h4' || tag === 'h5' || tag === 'h6') {
+	if (
+		tag === 'h1' ||
+		tag === 'h2' ||
+		tag === 'h3' ||
+		tag === 'h4' ||
+		tag === 'h5' ||
+		tag === 'h6'
+	) {
 		return renderHeading(el, context);
 	}
 	if (tag === 'a') return renderLink(el as HTMLAnchorElement, context);
@@ -116,7 +114,10 @@ function renderListItem(
 		(child) => !(child instanceof HTMLElement && (child.tagName === 'UL' || child.tagName === 'OL'))
 	);
 
-	const mainContent = mainNodes.map((node) => serializeNode(node, context)).join('').trim();
+	const mainContent = mainNodes
+		.map((node) => serializeNode(node, context))
+		.join('')
+		.trim();
 	const prefix = `${context.indent}${marker} `;
 	const lines = mainContent ? `${prefix}${mainContent}` : `${prefix}`;
 
@@ -159,7 +160,8 @@ function renderTable(el: HTMLTableElement): string {
 	if (!rows.length) return '';
 
 	const headerRow = rows[0];
-	const hasHeader = Array.from(el.querySelectorAll('thead th')).length > 0 ||
+	const hasHeader =
+		Array.from(el.querySelectorAll('thead th')).length > 0 ||
 		Array.from(el.querySelectorAll('tr:first-child th')).length > 0;
 
 	const headers = hasHeader ? headerRow : headerRow.map((_, index) => `Column ${index + 1}`);

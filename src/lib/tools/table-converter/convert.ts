@@ -21,15 +21,16 @@ export function parseJson(input: string, arrayHeaders: boolean): TableData {
 			const rows = parsed as unknown[][];
 			const headers = arrayHeaders ? (rows[0] ?? []).map((cell) => stringifyCell(cell)) : [];
 			const body = arrayHeaders ? rows.slice(1) : rows;
-			return normalizeTable({ headers, rows: body.map((row) => row.map((cell) => stringifyCell(cell))) });
+			return normalizeTable({
+				headers,
+				rows: body.map((row) => row.map((cell) => stringifyCell(cell)))
+			});
 		}
 
 		if (parsed.every((item) => item && typeof item === 'object' && !Array.isArray(item))) {
 			const records = parsed as Record<string, unknown>[];
 			const headers = collectHeaders(records);
-			const rows = records.map((record) =>
-				headers.map((key) => stringifyCell(record[key]))
-			);
+			const rows = records.map((record) => headers.map((key) => stringifyCell(record[key])));
 			return normalizeTable({ headers, rows });
 		}
 	}
@@ -118,11 +119,7 @@ function collectHeaders(records: Record<string, unknown>[]): string[] {
 }
 
 function normalizeTable(data: TableData): TableData {
-	const columnCount = Math.max(
-		data.headers.length,
-		...data.rows.map((row) => row.length),
-		0
-	);
+	const columnCount = Math.max(data.headers.length, ...data.rows.map((row) => row.length), 0);
 	const headers = data.headers.length
 		? padRow(data.headers, columnCount)
 		: Array.from({ length: columnCount }, (_, index) => `Column ${index + 1}`);
@@ -168,10 +165,13 @@ function toJira(data: TableData): string {
 
 function toHtml(data: TableData): string {
 	if (!data.headers.length) return '';
-	const headerCells = data.headers.map((cell) => `<th>${escapeHtml(normalizeCell(cell))}</th>`).join('');
+	const headerCells = data.headers
+		.map((cell) => `<th>${escapeHtml(normalizeCell(cell))}</th>`)
+		.join('');
 	const bodyRows = data.rows
-		.map((row) =>
-			`<tr>${row.map((cell) => `<td>${escapeHtml(normalizeCell(cell))}</td>`).join('')}</tr>`
+		.map(
+			(row) =>
+				`<tr>${row.map((cell) => `<td>${escapeHtml(normalizeCell(cell))}</td>`).join('')}</tr>`
 		)
 		.join('');
 

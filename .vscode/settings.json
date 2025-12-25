@@ -3,8 +3,7 @@
 		"*.css": "tailwindcss"
 	},
 	"files.exclude": {
-    "**/.git": false,
-	"**/.github": false
-}
-
+		"**/.git": false,
+		"**/.github": false
+	}
 }

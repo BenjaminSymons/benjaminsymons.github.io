@@ -26,7 +26,7 @@
 
 <ToolLayout title="JSON formatter" subtitle="Client-side only. No network.">
 	<div class="flex flex-wrap items-end gap-4">
-		<label class="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Indent
 			<select
 				class="h-10 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
@@ -38,7 +38,9 @@
 			</select>
 		</label>
 
-		<label class="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+		<label
+			class="text-muted flex items-center gap-3 text-xs font-semibold tracking-[0.2em] uppercase"
+		>
 			<input
 				class="h-4 w-4 rounded border-black/20 text-[rgb(var(--accent))] focus:ring-[rgb(var(--accent))]/20"
 				type="checkbox"
