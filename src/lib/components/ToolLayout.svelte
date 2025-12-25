@@ -8,28 +8,15 @@
 	let { title, subtitle, children }: Props = $props();
 </script>
 
-<section class="wrap">
-	<header class="top">
-		<h1>{title}</h1>
+<section class="glass-card overflow-hidden">
+	<header class="border-b border-black/10 px-6 py-5">
+		<h1 class="text-3xl font-semibold md:text-4xl">{title}</h1>
 		{#if subtitle}
-			<p class="sub">{subtitle}</p>
+			<p class="mt-2 text-sm text-muted">{subtitle}</p>
 		{/if}
 	</header>
 
-	{@render children()}
+	<div class="space-y-6 p-6">
+		{@render children()}
+	</div>
 </section>
-
-<style>
-	.wrap {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-	.top h1 {
-		margin: 0;
-	}
-	.sub {
-		margin: 0.25rem 0 0;
-		opacity: 0.8;
-	}
-</style>

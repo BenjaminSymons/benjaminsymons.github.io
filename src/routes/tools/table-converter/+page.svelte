@@ -1,40 +1,57 @@
 <script lang="ts">
 	import ToolLayout from '$lib/components/ToolLayout.svelte';
-	import { formatJson } from '$lib/tools/json-formatter/format';
+	import { parseCsv, parseJson, tableToOutput } from '$lib/tools/table-converter/convert';
+	import type { TableOutput } from '$lib/tools/table-converter/convert';
 
 	let input = $state('');
 	let output = $state('');
-	let indent = $state(2);
-	let sortKeys = $state(false);
+	let inputFormat = $state<'csv' | 'json'>('csv');
+	let outputFormat = $state<TableOutput>('markdown');
+	let arrayHeaders = $state(true);
 	let error = $state('');
 
 	function run() {
 		error = '';
+		if (!input.trim()) {
+			output = '';
+			return;
+		}
 		try {
-			output = input.trim() ? formatJson(input, indent, sortKeys) : '';
+			const data = inputFormat === 'csv' ? parseCsv(input) : parseJson(input, arrayHeaders);
+			output = tableToOutput(data, outputFormat);
 		} catch (e) {
-			error = e instanceof Error ? e.message : 'Invalid JSON';
+			error = e instanceof Error ? e.message : 'Unable to parse input.';
 			output = '';
 		}
 	}
 
-	// Auto-run on changes
 	$effect(() => {
 		run();
 	});
 </script>
 
-<ToolLayout title="JSON formatter" subtitle="Client-side only. No network.">
+<ToolLayout title="Table converter" subtitle="CSV or JSON into HTML, Markdown, or JIRA tables.">
 	<div class="flex flex-wrap items-end gap-4">
 		<label class="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-			Indent
+			Input
 			<select
 				class="h-10 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
-				bind:value={indent}
+				bind:value={inputFormat}
 			>
-				<option value={2}>2 spaces</option>
-				<option value={4}>4 spaces</option>
-				<option value={0}>Minify</option>
+				<option value="csv">CSV</option>
+				<option value="json">JSON</option>
+			</select>
+		</label>
+
+		<label class="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+			Output
+			<select
+				class="h-10 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+				bind:value={outputFormat}
+			>
+				<option value="markdown">Markdown</option>
+				<option value="html">HTML</option>
+				<option value="jira">JIRA</option>
 			</select>
 		</label>
 
@@ -42,18 +59,11 @@
 			<input
 				class="h-4 w-4 rounded border-black/20 text-[rgb(var(--accent))] focus:ring-[rgb(var(--accent))]/20"
 				type="checkbox"
-				bind:checked={sortKeys}
+				bind:checked={arrayHeaders}
+				disabled={inputFormat !== 'json'}
 			/>
-			Sort keys
+			JSON array uses first row as headers
 		</label>
-
-		<button
-			class="h-10 rounded-full bg-[rgb(var(--accent))] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
-			type="button"
-			onclick={run}
-		>
-			Format
-		</button>
 	</div>
 
 	{#if error}
@@ -66,13 +76,13 @@
 		<textarea
 			class="min-h-[55vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
 			bind:value={input}
-			placeholder="Paste JSON…"
+			placeholder="Paste CSV or JSON…"
 		></textarea>
 		<textarea
 			class="min-h-[55vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
 			readonly
 			value={output}
-			placeholder="Output…"
+			placeholder="Table output…"
 		></textarea>
 	</div>
 </ToolLayout>

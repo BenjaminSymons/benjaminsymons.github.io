@@ -1,59 +1,43 @@
 <script lang="ts">
 	import ToolLayout from '$lib/components/ToolLayout.svelte';
-	import { formatJson } from '$lib/tools/json-formatter/format';
+	import { decodeBase64, encodeBase64 } from '$lib/tools/base64/codec';
 
+	let mode = $state<'encode' | 'decode'>('encode');
 	let input = $state('');
 	let output = $state('');
-	let indent = $state(2);
-	let sortKeys = $state(false);
 	let error = $state('');
 
 	function run() {
 		error = '';
+		if (!input.trim()) {
+			output = '';
+			return;
+		}
 		try {
-			output = input.trim() ? formatJson(input, indent, sortKeys) : '';
+			output = mode === 'encode' ? encodeBase64(input) : decodeBase64(input);
 		} catch (e) {
-			error = e instanceof Error ? e.message : 'Invalid JSON';
+			error = e instanceof Error ? e.message : 'Invalid input.';
 			output = '';
 		}
 	}
 
-	// Auto-run on changes
 	$effect(() => {
 		run();
 	});
 </script>
 
-<ToolLayout title="JSON formatter" subtitle="Client-side only. No network.">
+<ToolLayout title="Base64 encoder/decoder" subtitle="Offline and instant.">
 	<div class="flex flex-wrap items-end gap-4">
 		<label class="flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-			Indent
+			Mode
 			<select
 				class="h-10 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
-				bind:value={indent}
+				bind:value={mode}
 			>
-				<option value={2}>2 spaces</option>
-				<option value={4}>4 spaces</option>
-				<option value={0}>Minify</option>
+				<option value="encode">Encode</option>
+				<option value="decode">Decode</option>
 			</select>
 		</label>
-
-		<label class="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-			<input
-				class="h-4 w-4 rounded border-black/20 text-[rgb(var(--accent))] focus:ring-[rgb(var(--accent))]/20"
-				type="checkbox"
-				bind:checked={sortKeys}
-			/>
-			Sort keys
-		</label>
-
-		<button
-			class="h-10 rounded-full bg-[rgb(var(--accent))] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
-			type="button"
-			onclick={run}
-		>
-			Format
-		</button>
 	</div>
 
 	{#if error}
@@ -66,7 +50,7 @@
 		<textarea
 			class="min-h-[55vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
 			bind:value={input}
-			placeholder="Paste JSON…"
+			placeholder="Paste input…"
 		></textarea>
 		<textarea
 			class="min-h-[55vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"

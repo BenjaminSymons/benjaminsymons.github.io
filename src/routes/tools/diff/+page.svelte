@@ -30,39 +30,27 @@
 </script>
 
 <ToolLayout title="Diff checker" subtitle="Worker-backed.">
-	<div class="grid">
-		<textarea bind:value={left} placeholder="Left…"></textarea>
-		<textarea bind:value={right} placeholder="Right…"></textarea>
+	<div class="grid gap-4 lg:grid-cols-2">
+		<textarea
+			class="min-h-[45vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+			bind:value={left}
+			placeholder="Left…"
+		></textarea>
+		<textarea
+			class="min-h-[45vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+			bind:value={right}
+			placeholder="Right…"
+		></textarea>
 	</div>
 
-	<div class="res">
+	<div class="rounded-2xl border border-black/10 bg-white/70 px-5 py-4 text-sm">
 		{#if result}
-			<strong>{result.equal ? 'Match' : 'Different'}</strong>
-			<div>{result.summary}</div>
+			<strong class="text-[rgb(var(--accent-2))]">
+				{result.equal ? 'Match' : 'Different'}
+			</strong>
+			<div class="mt-2 text-muted">{result.summary}</div>
 		{:else}
-			<div>Type to compare.</div>
+			<div class="text-muted">Type to compare.</div>
 		{/if}
 	</div>
 </ToolLayout>
-
-<style>
-	.grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
-	}
-	textarea {
-		width: 100%;
-		min-height: 45vh;
-		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-	}
-	.res {
-		padding: 0.75rem;
-		border: 1px solid #ddd;
-	}
-	@media (max-width: 900px) {
-		.grid {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>

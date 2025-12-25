@@ -1,47 +1,29 @@
 <script lang="ts">
-	import './layout.css';
+	import '../app.css';
 	import { resolve } from '$app/paths';
 	import { TOOLS } from '$lib/tools/registry';
 
 	let { children } = $props();
 </script>
 
-<header class="hdr">
-	<a class="brand" href={resolve('/')}>My Tools</a>
-	<nav class="nav">
-		{#each TOOLS as t (t.route)}
-			<a href={resolve(t.route)}>{t.name}</a>
-		{/each}
-	</nav>
-</header>
+<div class="page-shell min-h-screen">
+	<header class="sticky top-0 z-20 border-b border-black/10 bg-white/70 backdrop-blur">
+		<div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+			<a class="text-lg font-semibold tracking-tight" href={resolve('/')}>My Tools</a>
+			<nav class="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+				{#each TOOLS as t (t.route)}
+					<a
+						class="rounded-full border border-black/10 bg-white/70 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-muted transition hover:border-black/30 hover:text-[rgb(var(--ink))]"
+						href={resolve(t.route)}
+					>
+						{t.name}
+					</a>
+				{/each}
+			</nav>
+		</div>
+	</header>
 
-<main class="main">
-	{@render children()}
-</main>
-
-<style>
-	.hdr {
-		display: flex;
-		gap: 1rem;
-		align-items: center;
-		padding: 0.75rem 1rem;
-		border-bottom: 1px solid #ddd;
-	}
-	.brand {
-		font-weight: 600;
-		text-decoration: none;
-	}
-	.nav {
-		display: flex;
-		gap: 0.75rem;
-		flex-wrap: wrap;
-	}
-	.nav a {
-		text-decoration: none;
-	}
-	.main {
-		padding: 1rem;
-		max-width: 1100px;
-		margin: 0 auto;
-	}
-</style>
+	<main class="mx-auto w-full max-w-6xl px-6 pb-16 pt-10">
+		{@render children()}
+	</main>
+</div>
