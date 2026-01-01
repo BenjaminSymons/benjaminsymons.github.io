@@ -37,5 +37,11 @@ export const TOOLS: ToolInfo[] = [
 		name: 'Diff checker',
 		route: '/tools/diff',
 		description: 'Compare two texts (worker-based).'
+	},
+	{
+		id: 'cidr-subnet',
+		name: 'CIDR + subnet reference',
+		route: '/tools/cidr-subnet',
+		description: 'Inspect CIDR blocks, masks, and subnet lists.'
 	}
 ];
