@@ -9,18 +9,18 @@
 	let subnets = $state<ReturnType<typeof listSubnets>>([]);
 	let error = $state('');
 
-	const toInteger = (value: string | number | null | undefined, fallback: number) => {
+	const toNumber = (value: string | number | null | undefined, fallback: number) => {
 		if (value === null || value === undefined) {
 			return fallback;
 		}
 		if (typeof value === 'number') {
-			return Number.isFinite(value) ? Math.trunc(value) : value;
+			return value;
 		}
 		const normalized = String(value).trim();
 		if (!normalized) {
 			return fallback;
 		}
-		return Number.parseInt(normalized, 10);
+		return Number(normalized);
 	};
 
 	function run() {
@@ -32,13 +32,13 @@
 		}
 		try {
 			const parsed = parseCidr(input);
-			const nextPrefix = toInteger(subnetPrefix, parsed.prefix);
+			const nextPrefix = toNumber(subnetPrefix, parsed.prefix);
 			if (!Number.isFinite(nextPrefix) || !Number.isInteger(nextPrefix)) {
 				throw new Error('Subnet prefix must be a whole number.');
 			}
-			const parsedLimit = toInteger(limit, 8);
-			if (!Number.isFinite(parsedLimit)) {
-				throw new Error('Max subnets must be a number.');
+			const parsedLimit = toNumber(limit, 8);
+			if (!Number.isFinite(parsedLimit) || !Number.isInteger(parsedLimit)) {
+				throw new Error('Max subnets must be a whole number.');
 			}
 			const limitValue = Math.max(1, Math.min(256, parsedLimit));
 			summary = buildSummary(parsed);
