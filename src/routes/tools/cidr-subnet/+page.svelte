@@ -9,18 +9,18 @@
 	let subnets = $state<ReturnType<typeof listSubnets>>([]);
 	let error = $state('');
 
-	const toNumber = (value: string | number | null | undefined, fallback: number) => {
+	const toInteger = (value: string | number | null | undefined, fallback: number) => {
 		if (value === null || value === undefined) {
 			return fallback;
 		}
 		if (typeof value === 'number') {
-			return value;
+			return Number.isFinite(value) ? Math.trunc(value) : value;
 		}
 		const normalized = String(value).trim();
 		if (!normalized) {
 			return fallback;
 		}
-		return Number(normalized);
+		return Number.parseInt(normalized, 10);
 	};
 
 	function run() {
@@ -32,11 +32,11 @@
 		}
 		try {
 			const parsed = parseCidr(input);
-			const nextPrefix = toNumber(subnetPrefix, parsed.prefix);
+			const nextPrefix = toInteger(subnetPrefix, parsed.prefix);
 			if (!Number.isFinite(nextPrefix) || !Number.isInteger(nextPrefix)) {
 				throw new Error('Subnet prefix must be a whole number.');
 			}
-			const parsedLimit = toNumber(limit, 8);
+			const parsedLimit = toInteger(limit, 8);
 			if (!Number.isFinite(parsedLimit)) {
 				throw new Error('Max subnets must be a number.');
 			}
@@ -73,6 +73,7 @@
 				min="0"
 				max="32"
 				placeholder="Use CIDR"
+				step="1"
 				type="number"
 			/>
 		</label>
@@ -85,6 +86,7 @@
 				min="1"
 				max="256"
 				placeholder="8"
+				step="1"
 				type="number"
 			/>
 		</label>
