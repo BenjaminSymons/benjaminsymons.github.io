@@ -100,58 +100,80 @@
 
 	{#if summary}
 		<div class="grid gap-4 lg:grid-cols-2">
-			<div class="rounded-2xl border border-black/10 bg-white/80 p-4 shadow-inner">
+			<div class="min-w-0 rounded-2xl border border-black/10 bg-white/80 p-4 shadow-inner">
 				<h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Summary</h2>
 				<dl class="mt-4 grid gap-3 text-sm">
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">CIDR</dt>
-						<dd class="font-mono text-right">{summary.cidr}</dd>
+						<dd class="break-words font-mono text-left sm:text-right">{summary.cidr}</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Network</dt>
-						<dd class="font-mono text-right">{summary.network}</dd>
+						<dd class="break-words font-mono text-left sm:text-right">{summary.network}</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Broadcast</dt>
-						<dd class="font-mono text-right">{summary.broadcast}</dd>
+						<dd class="break-words font-mono text-left sm:text-right">
+							{summary.broadcast}
+						</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Subnet mask</dt>
-						<dd class="font-mono text-right">{summary.subnetMask}</dd>
+						<dd class="break-words font-mono text-left sm:text-right">
+							{summary.subnetMask}
+						</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Wildcard mask</dt>
-						<dd class="font-mono text-right">{summary.wildcardMask}</dd>
+						<dd class="break-words font-mono text-left sm:text-right">
+							{summary.wildcardMask}
+						</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Host range</dt>
-						<dd class="font-mono text-right">
+						<dd class="break-words font-mono text-left sm:text-right">
 							{summary.firstHost} – {summary.lastHost}
 						</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Total addresses</dt>
-						<dd class="font-mono text-right">
+						<dd class="break-words font-mono text-left sm:text-right">
 							{summary.totalAddresses.toLocaleString()}
 						</dd>
 					</div>
-					<div class="flex items-center justify-between gap-4">
+					<div
+						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+					>
 						<dt class="text-muted">Usable hosts</dt>
-						<dd class="font-mono text-right">
+						<dd class="break-words font-mono text-left sm:text-right">
 							{summary.usableHosts.toLocaleString()}
 						</dd>
 					</div>
 				</dl>
 			</div>
 
-			<div class="rounded-2xl border border-black/10 bg-white/80 p-4 shadow-inner">
+			<div class="min-w-0 rounded-2xl border border-black/10 bg-white/80 p-4 shadow-inner">
 				<h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
 					Subnet list
 				</h2>
 				<div
-					class="mt-4 max-h-[40vh] overflow-auto rounded-2xl border border-black/10 bg-white/60 sm:max-h-[55vh]"
+					class="mt-4 max-h-[40vh] min-w-0 overflow-auto rounded-2xl border border-black/10 bg-white/60 sm:max-h-[55vh]"
 				>
-					<table class="min-w-[36rem] w-full text-left text-sm">
+					<table class="min-w-[32rem] w-full text-left text-sm">
 						<thead class="sticky top-0 bg-white/90 text-xs uppercase tracking-[0.2em] text-muted">
 							<tr>
 								<th class="px-4 py-3">CIDR</th>
