@@ -25,11 +25,11 @@
 </script>
 
 <ToolLayout title="JSON formatter" subtitle="Client-side only. No network.">
-	<div class="flex flex-wrap items-end gap-4">
+	<div class="grid gap-4 sm:flex sm:flex-wrap sm:items-end">
 		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Indent
 			<select
-				class="h-10 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-auto"
 				bind:value={indent}
 			>
 				<option value={2}>2 spaces</option>
@@ -50,7 +50,7 @@
 		</label>
 
 		<button
-			class="h-10 rounded-full bg-[rgb(var(--accent))] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
+			class="h-10 w-full rounded-full bg-[rgb(var(--accent))] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 sm:w-auto"
 			type="button"
 			onclick={run}
 		>

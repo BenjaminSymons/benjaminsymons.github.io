@@ -54,21 +54,21 @@
 </script>
 
 <ToolLayout title="CIDR + subnet reference" subtitle="Offline calculator for CIDR blocks and subnet lists.">
-	<div class="flex flex-wrap items-end gap-4">
-		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
+	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		<label class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			CIDR block
 			<input
-				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-64"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
 				bind:value={input}
 				placeholder="10.0.0.0/16"
 				type="text"
 			/>
 		</label>
 
-		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
+		<label class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Subnet prefix
 			<input
-				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-40"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
 				bind:value={subnetPrefix}
 				min="0"
 				max="32"
@@ -78,10 +78,10 @@
 			/>
 		</label>
 
-		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
+		<label class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Max subnets
 			<input
-				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-32"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
 				bind:value={limit}
 				min="1"
 				max="256"

@@ -27,11 +27,11 @@
 </script>
 
 <ToolLayout title="Base64 encoder/decoder" subtitle="Offline and instant.">
-	<div class="flex flex-wrap items-end gap-4">
+	<div class="grid gap-4 sm:flex sm:flex-wrap sm:items-end">
 		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Mode
 			<select
-				class="h-10 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-auto"
 				bind:value={mode}
 			>
 				<option value="encode">Encode</option>
