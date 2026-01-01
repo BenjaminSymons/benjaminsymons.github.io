@@ -76,12 +76,12 @@
 
 	<div class="grid gap-4 lg:grid-cols-2">
 		<textarea
-			class="min-h-[55vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+			class="min-h-[40vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:min-h-[50vh] lg:min-h-[55vh]"
 			bind:value={input}
 			placeholder="Paste CSV or JSON…"
 		></textarea>
 		<textarea
-			class="min-h-[55vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+			class="min-h-[40vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:min-h-[50vh] lg:min-h-[55vh]"
 			readonly
 			value={output}
 			placeholder="Table output…"

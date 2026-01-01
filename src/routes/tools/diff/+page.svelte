@@ -35,12 +35,12 @@
 <ToolLayout title="Diff checker" subtitle="Worker-backed.">
 	<div class="grid gap-4 lg:grid-cols-2">
 		<textarea
-			class="min-h-[45vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+			class="min-h-[35vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:min-h-[45vh]"
 			bind:value={left}
 			placeholder="Left…"
 		></textarea>
 		<textarea
-			class="min-h-[45vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+			class="min-h-[35vh] w-full rounded-2xl border border-black/10 bg-white/80 p-4 font-mono text-sm shadow-inner focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:min-h-[45vh]"
 			bind:value={right}
 			placeholder="Right…"
 		></textarea>

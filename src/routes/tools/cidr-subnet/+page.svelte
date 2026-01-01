@@ -58,7 +58,7 @@
 		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			CIDR block
 			<input
-				class="h-10 w-64 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-64"
 				bind:value={input}
 				placeholder="10.0.0.0/16"
 				type="text"
@@ -68,7 +68,7 @@
 		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Subnet prefix
 			<input
-				class="h-10 w-40 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-40"
 				bind:value={subnetPrefix}
 				min="0"
 				max="32"
@@ -81,7 +81,7 @@
 		<label class="text-muted flex flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
 			Max subnets
 			<input
-				class="h-10 w-32 rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
+				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20 sm:w-32"
 				bind:value={limit}
 				min="1"
 				max="256"
@@ -148,8 +148,10 @@
 				<h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
 					Subnet list
 				</h2>
-				<div class="mt-4 max-h-[55vh] overflow-auto rounded-2xl border border-black/10 bg-white/60">
-					<table class="w-full text-left text-sm">
+				<div
+					class="mt-4 max-h-[40vh] overflow-auto rounded-2xl border border-black/10 bg-white/60 sm:max-h-[55vh]"
+				>
+					<table class="min-w-[36rem] w-full text-left text-sm">
 						<thead class="sticky top-0 bg-white/90 text-xs uppercase tracking-[0.2em] text-muted">
 							<tr>
 								<th class="px-4 py-3">CIDR</th>
