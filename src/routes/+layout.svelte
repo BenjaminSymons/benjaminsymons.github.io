@@ -13,11 +13,11 @@
 		>
 			<a class="text-lg font-semibold tracking-tight" href={resolve('/')}>My Tools</a>
 			<nav
-				class="no-scrollbar text-muted flex w-full flex-nowrap gap-2 overflow-x-auto pb-2 text-xs font-semibold uppercase tracking-[0.18em] md:w-auto md:flex-wrap md:pb-0 md:tracking-[0.2em]"
+				class="no-scrollbar text-muted flex w-full flex-nowrap gap-2 overflow-x-auto pb-2 text-xs font-semibold tracking-[0.18em] uppercase md:w-auto md:flex-wrap md:pb-0 md:tracking-[0.2em]"
 			>
 				{#each TOOLS as t (t.route)}
 					<a
-						class="text-muted shrink-0 whitespace-nowrap rounded-full border border-black/10 bg-white/70 px-2 py-1 text-[0.55rem] font-semibold uppercase tracking-[0.18em] transition hover:border-black/30 hover:text-[rgb(var(--ink))] sm:px-3 sm:text-[0.65rem] sm:tracking-[0.2em]"
+						class="text-muted shrink-0 rounded-full border border-black/10 bg-white/70 px-2 py-1 text-[0.55rem] font-semibold tracking-[0.18em] whitespace-nowrap uppercase transition hover:border-black/30 hover:text-[rgb(var(--ink))] sm:px-3 sm:text-[0.65rem] sm:tracking-[0.2em]"
 						href={resolve(t.route)}
 					>
 						{t.name}

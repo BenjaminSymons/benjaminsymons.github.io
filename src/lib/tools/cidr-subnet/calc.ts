@@ -36,9 +36,7 @@ export type SubnetInfo = {
 const toUnsigned = (value: number) => value >>> 0;
 
 const formatDotted = (value: number) => {
-	return [24, 16, 8, 0]
-		.map((shift) => String((value >>> shift) & 0xff))
-		.join('.');
+	return [24, 16, 8, 0].map((shift) => String((value >>> shift) & 0xff)).join('.');
 };
 
 const formatHost = (value: number | null) => (value === null ? '—' : formatDotted(value));
@@ -58,9 +56,7 @@ const parseIp = (input: string) => {
 		}
 		return value;
 	});
-	const ipInt = toUnsigned(
-		(octets[0] << 24) | (octets[1] << 16) | (octets[2] << 8) | octets[3]
-	);
+	const ipInt = toUnsigned((octets[0] << 24) | (octets[1] << 16) | (octets[2] << 8) | octets[3]);
 	return { ipInt, ip: octets.join('.') };
 };
 

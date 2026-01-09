@@ -43,5 +43,11 @@ export const TOOLS: ToolInfo[] = [
 		name: 'CIDR + subnet reference',
 		route: '/tools/cidr-subnet',
 		description: 'Inspect CIDR blocks, masks, and subnet lists.'
+	},
+	{
+		id: 'subnet-visualiser',
+		name: 'Subnet visualiser',
+		route: '/tools/subnet-visualiser',
+		description: 'Visualise subnet allocations within a CIDR block.'
 	}
 ];

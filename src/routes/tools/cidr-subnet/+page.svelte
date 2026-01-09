@@ -53,9 +53,14 @@
 	});
 </script>
 
-<ToolLayout title="CIDR + subnet reference" subtitle="Offline calculator for CIDR blocks and subnet lists.">
+<ToolLayout
+	title="CIDR + subnet reference"
+	subtitle="Offline calculator for CIDR blocks and subnet lists."
+>
 	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-		<label class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
+		<label
+			class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase"
+		>
 			CIDR block
 			<input
 				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
@@ -65,7 +70,9 @@
 			/>
 		</label>
 
-		<label class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
+		<label
+			class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase"
+		>
 			Subnet prefix
 			<input
 				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
@@ -78,7 +85,9 @@
 			/>
 		</label>
 
-		<label class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
+		<label
+			class="text-muted flex w-full flex-col gap-2 text-xs font-semibold tracking-[0.2em] uppercase"
+		>
 			Max subnets
 			<input
 				class="h-10 w-full rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-[rgb(var(--ink))] focus:border-[rgb(var(--accent))] focus:ring-2 focus:ring-[rgb(var(--accent))]/20"
@@ -101,25 +110,25 @@
 	{#if summary}
 		<div class="grid gap-4 lg:grid-cols-2">
 			<div class="min-w-0 rounded-2xl border border-black/10 bg-white/80 p-4 shadow-inner">
-				<h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">Summary</h2>
+				<h2 class="text-muted text-sm font-semibold tracking-[0.2em] uppercase">Summary</h2>
 				<dl class="mt-4 grid gap-3 text-sm">
 					<div
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">CIDR</dt>
-						<dd class="break-words font-mono text-left sm:text-right">{summary.cidr}</dd>
+						<dd class="text-left font-mono break-words sm:text-right">{summary.cidr}</dd>
 					</div>
 					<div
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Network</dt>
-						<dd class="break-words font-mono text-left sm:text-right">{summary.network}</dd>
+						<dd class="text-left font-mono break-words sm:text-right">{summary.network}</dd>
 					</div>
 					<div
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Broadcast</dt>
-						<dd class="break-words font-mono text-left sm:text-right">
+						<dd class="text-left font-mono break-words sm:text-right">
 							{summary.broadcast}
 						</dd>
 					</div>
@@ -127,7 +136,7 @@
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Subnet mask</dt>
-						<dd class="break-words font-mono text-left sm:text-right">
+						<dd class="text-left font-mono break-words sm:text-right">
 							{summary.subnetMask}
 						</dd>
 					</div>
@@ -135,7 +144,7 @@
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Wildcard mask</dt>
-						<dd class="break-words font-mono text-left sm:text-right">
+						<dd class="text-left font-mono break-words sm:text-right">
 							{summary.wildcardMask}
 						</dd>
 					</div>
@@ -143,7 +152,7 @@
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Host range</dt>
-						<dd class="break-words font-mono text-left sm:text-right">
+						<dd class="text-left font-mono break-words sm:text-right">
 							{summary.firstHost} – {summary.lastHost}
 						</dd>
 					</div>
@@ -151,7 +160,7 @@
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Total addresses</dt>
-						<dd class="break-words font-mono text-left sm:text-right">
+						<dd class="text-left font-mono break-words sm:text-right">
 							{summary.totalAddresses.toLocaleString()}
 						</dd>
 					</div>
@@ -159,7 +168,7 @@
 						class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
 					>
 						<dt class="text-muted">Usable hosts</dt>
-						<dd class="break-words font-mono text-left sm:text-right">
+						<dd class="text-left font-mono break-words sm:text-right">
 							{summary.usableHosts.toLocaleString()}
 						</dd>
 					</div>
@@ -167,14 +176,12 @@
 			</div>
 
 			<div class="min-w-0 rounded-2xl border border-black/10 bg-white/80 p-4 shadow-inner">
-				<h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
-					Subnet list
-				</h2>
+				<h2 class="text-muted text-sm font-semibold tracking-[0.2em] uppercase">Subnet list</h2>
 				<div
 					class="mt-4 max-h-[40vh] min-w-0 overflow-auto rounded-2xl border border-black/10 bg-white/60 sm:max-h-[55vh]"
 				>
-					<table class="min-w-[32rem] w-full text-left text-sm">
-						<thead class="sticky top-0 bg-white/90 text-xs uppercase tracking-[0.2em] text-muted">
+					<table class="w-full min-w-[32rem] text-left text-sm">
+						<thead class="text-muted sticky top-0 bg-white/90 text-xs tracking-[0.2em] uppercase">
 							<tr>
 								<th class="px-4 py-3">CIDR</th>
 								<th class="px-4 py-3">Network</th>
